@@ -39,6 +39,7 @@ function animate(ctx) {
 
     ctx.fillStyle = '#42a7f5';
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    
 
     ctx.fillStyle = 'green';
 
