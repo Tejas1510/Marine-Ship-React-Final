@@ -2,7 +2,7 @@ import React from 'react'
 import './assets/css/footer.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 function footer() {
     return (
         <div>
