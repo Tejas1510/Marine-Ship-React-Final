@@ -2,9 +2,13 @@ import React, { useState,useRef, useEffect, Component } from 'react'
 import {
     Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Button, Label } from 'reactstrap';
+<<<<<<< HEAD
 import Nav from './assets/img/boat.png'
 import ocean from './assets/img/ocean.png'
 import port from './assets/img/island.png'
+=======
+// import CanvasImage from './CanvasImage';
+>>>>>>> bd3cd215d3d86a946a5483e580f384be3b92cc74
 // Canvas
 var totalShips = 20;
 const space = 10;
@@ -96,6 +100,18 @@ function animate(ctx) {
  
     for(let i=0;i<totalShips;i++) {
 
+<<<<<<< HEAD
+=======
+    // for (let i = 0; i < totalShips; i++) {
+
+    //     ships[i].xPosition += ships[i].incrementX;
+    //     ships[i].yPosition += ships[i].incrementY;
+    //     }
+    // }
+ 
+    for(let i=0;i<totalShips;i++) {
+
+>>>>>>> bd3cd215d3d86a946a5483e580f384be3b92cc74
         if (ships[i].incrementX>0) {
             if (ships[i].xPosition < ships[i].destinationX){
                 ships[i].xPosition += ships[i].incrementX;
@@ -138,6 +154,8 @@ function playAnimation(context) {
 function mergey(p, i, k, j) {
     var result = [];
     var length = 0;
+<<<<<<< HEAD
+=======
 
     //position counters
     var c1 = i;
@@ -413,6 +431,333 @@ function closest1(ships) {
 
 }
 
+function valid(ships){
+    var temp007=[]
+    for(let i=0;i<totalShips;i++) {
+            if (ships[i].xPosition < ships[i].destinationX){
+                temp007.push(ships[i])
+            }
+            
+    }
+    return temp007
+    }
+
+
+// Closest Pair function
+function calculateClosestPair(ctx,ships) {
+>>>>>>> bd3cd215d3d86a946a5483e580f384be3b92cc74
+
+    //position counters
+    var c1 = i;
+    var c2 = k;
+
+<<<<<<< HEAD
+    for (var l = 0; l < i; l = l + 1) {
+        //result.push(p[l]);
+        result[length++] = p[l];
+    }
+
+    while (c1 < k || c2 < j) {
+        if (c1 < k && c2 < j) {
+            if (p[c1].yPosition < p[c2].yPosition) {
+                //result.push(p[c1]);
+                result[length++] = p[c1];
+                c1 = c1 + 1;
+            } else {
+                //result.push(p[c2]);
+                result[length++] = p[c2];
+                c2 = c2 + 1;
+            }
+        } else if (c1 < k) {
+            //result.push(p[c1]);
+            result[length++] = p[c1];
+            c1 = c1 + 1;
+        } else if (c2 < j) {
+            //result.push(p[c2]);
+            result[length++] = p[c2];
+            c2 = c2 + 1;
+        }
+    }
+
+    for (l = j; l < p.length; l = l + 1) {
+        //result.push(p[l]);
+        result[length++] = p[l];
+    }
+
+    return result;
+}
+
+
+//Merge function X
+function mergex(p, i, k, j) {
+    var result = [];
+    var length = 0;
+
+    //position counters
+    var c1 = i;
+    var c2 = k;
+
+    for (var l = 0; l < i; l = l + 1) {
+        //result.push(p[l]);
+        result[length++] = p[l];
+    }
+
+    while (c1 < k || c2 < j) {
+        if (c1 < k && c2 < j) {
+            if (p[c1].xPosition < p[c2].xPosition) {
+                //result.push(p[c1]);
+                result[length++] = p[c1];
+                c1 = c1 + 1;
+            } else {
+                //result.push(p[c2]);
+                result[length++] = p[c2];
+                c2 = c2 + 1;
+            }
+        } else if (c1 < k) {
+            //result.push(p[c1]);
+            result[length++] = p[c1];
+            c1 = c1 + 1;
+        } else if (c2 < j) {
+            //result.push(p[c2]);
+            result[length++] = p[c2];
+            c2 = c2 + 1;
+        }
+    }
+
+    for (l = j; l < p.length; l = l + 1) {
+        //result.push(p[l]);
+        result[length++] = p[l];
+    }
+
+    return result;
+}
+
+var closestShips = [];
+
+//Distance calculator
+function distance(ship1,ship2){
+    // console.log(ship1,ship2)
+    if (ship1!==undefined && ship2!==undefined){
+    return Math.sqrt((ship1.xPosition - ship2.xPosition)**2 + (ship1.yPosition - ship2.yPosition)**2);
+    }
+    else{
+        return Infinity
+    }
+}
+
+//DAC
+
+/**
+ * dac compares every point in the list with the other
+ * ships to find the shortest distance between the ships
+ *
+ * PRE:  There are at least two ships in the array
+ *
+ * @param {array} ships:  2d array of ships [[x,y], [x,y]]
+ *
+ * @returns {object} An object containing the ships and their distance
+ */
+function closest1(ships) {
+    // ships=mergex(ships)
+
+    /**
+     * function dacHelper is the recursive function that applies the divide
+     * and conquer algorithm
+     *
+     * PRE: the array is SORTED BY X-COORDINATE
+     *
+     * @param {array} p: the array of ships
+     * @param i: index of the first item in the array to find closest pair
+     * @param j: index of the first item in the array to NOT find closet pair
+     *
+     * @returns {object} An object containing the ships and their distance
+     */
+
+    function dacHelper(i, j) {
+
+        if (j - i <= 3) {
+            if (j - i === 2) {
+                //only two ships
+                var x = ships[i];
+                var y = ships[j - 1];
+                //sort them by y-coord
+                if (x.yPosition > y.yPosition) {
+                    var temp = x;
+                    ships[i] = y;
+                    ships[j - 1] = temp;
+                }
+
+                //return the ships
+                console.log(x,y)
+                closestShips[0]=x
+                closestShips[1]=y
+                return distance(x, y);
+                
+            } else {
+                //we have three ships
+                var x = ships[i];
+                var y = ships[i + 1];
+                var z = ships[j - 1];
+
+                //sort them by y-coord
+                if (x.yPosition > y.yPosition) {
+                    var temp = x;
+                    if (y.yPosition > z.yPosition) {
+                        ships[i] = z;
+                        ships[j - 1] = temp;
+                    } else {
+                        if (temp.yPosition > z.yPosition) {
+                            ships[i] = y;
+                            ships[i + 1] = z;
+                            ships[j - 1] = temp
+                        } else {
+                            ships[i] = y;
+                            ships[i + 1] = temp;
+                        }
+                    }
+                } else {
+                    if (y.yPosition > z.yPosition) {
+                        var temp = z;
+                        ships[j - 1] = y;
+                        if (x.yPosition > temp.yPosition) {
+                            ships[i + 1] = x;
+                            ships[i] = temp;
+                        } else {
+                            ships[i + 1] = temp;
+                        }
+                    }
+                }
+
+
+                //find the closest pair
+                //first get distances
+                console.log("267",x,y,z)
+                var d12 = distance(x, y);
+                var d13 = distance(x, z);
+                var d23 = distance(y, z);
+
+                var min = Math.min(d12, d13, d23);
+
+                //return the correct pair of ships
+                if (min === d12) {
+                    closestShips[0]=x
+                    closestShips[1]=y
+                    // return closestShips;
+                } else if (min == d13) {
+                    closestShips[0]=x
+                    closestShips[1]=z
+                    // return closestShips;
+                } else {
+                    closestShips[0]=y
+                    closestShips[1]=z
+                    // return closestShips;
+                }
+            }
+        }
+         else {
+            // let k be the midpoint of the ships we're looking at
+            var k = parseInt((i + j) / 2);
+
+            // find closest pair left
+            dacHelper(i, k);
+            var leftside = [closestShips[0],closestShips[1]]
+            console.log("check",leftside)
+            console.log("297",leftside[0],leftside[1])
+            var deltaL=distance(leftside[0],leftside[1])
+            //find closest pair right
+            dacHelper(k, j);
+            var rightside = [closestShips[0],closestShips[1]]
+            console.log("302",rightside[0],rightside[1])
+            var deltaR =distance(rightside[0],rightside[1])
+
+            // delta = min(deltaL, deltaR)
+            if (deltaL < deltaR) {
+                var delta = deltaL;
+                closestShips[0]=leftside[0]
+                closestShips[1]=leftside[1]
+            } else {
+                var delta = deltaR;
+                closestShips[0]=rightside[0]
+                closestShips[1]=rightside[1]
+            }
+
+            //merge left and right ships by y-coord
+            ships = mergey(ships, i, k, j);
+
+            //create a vertical strip of ships in temporary array
+            var tempArray = [];
+            var x = ships[k - 1].xPosition
+            for (var l = 0, len = ships.length; l < len; l = l + 1) {
+                if (Math.abs(x - ships[l].xPosition) <= delta) {
+                    //tempArray.push(ships[l]);
+                    tempArray[tempArray.length] = ships[l];
+                }
+            }
+
+            //compare each point in vertical strip (temp array) w/ next
+            //seven ships.  If distance < delta, then delta = distance
+            for (l = 0, len = tempArray.length; l < len; l = l + 1) {
+                var x = tempArray[l];
+                for (var m = l + 1; m <= l + 7 && m < len; m = m + 1) {
+                    var y = tempArray[m];
+                    console.log("333",y,x)
+                    var temp = distance(y, x);
+                    if (temp < delta) {
+                        delta = temp;
+                        closestShips[0]=x
+                        closestShips[1]=y
+                    }
+                }
+            }
+            // return ans;
+        }
+
+    }
+
+    ships.sort(function(a, b) {
+        return a.xPosition - b.xPosition;
+    });
+=======
+    // Calculate closest pair
+    var minDistance = Number.MAX_VALUE;
+    
+    var numberOfShips = ships.length;
+    var temp007=[]
+    temp007=valid(ships)
+    closest1(temp007)
+
+
+
+    
+
+
+
+    // for (let i = 0; i < numberOfShips; i++) {
+    //     for (let j = i+1; j < numberOfShips; j++) {
+            
+    //         if (!(ships[i].xPosition >= ships[i].destinationX &&
+    //             ships[j].xPosition >= ships[i].destinationX )){
+
+    //             var distance = calculateDistance(ships[i], ships[j]);
+    //             if ( distance < minDistance) {
+    //                 closestShips[0] = ships[i];
+    //                 closestShips[1] = ships[j];
+    //                 minDistance = distance;
+    //             }
+    //         }
+
+    //     }
+    // }
+
+    // Animate the Closest Ships
+    console.log("check2",closestShips)
+    ctx.fillStyle = 'red';
+>>>>>>> bd3cd215d3d86a946a5483e580f384be3b92cc74
+
+    dacHelper(0, ships.length);
+
+}
+
 function valid(abc){
     var temp007=[]
     for(let i=0;i<abc.length;i++) {
@@ -585,11 +930,15 @@ const Canvas = props => {
     }
     return (
         <div class="container">
+<<<<<<< HEAD
             <br/>
             <br/>
            <center><canvas ref={canvasRef}/></center> 
             {/* <canvas ref={CanvasImage}/> */}
             
+=======
+            <canvas ref={canvasRef}/>
+>>>>>>> bd3cd215d3d86a946a5483e580f384be3b92cc74
             {/* <CanvasImage src="https://www.google.com/logos/doodles/2017/115th-anniversary-of-the-antikythera-mechanisms-discovery-6292005859622912-l.png" /> */}
             <div class="row btn-group d-flex justify-content-center"  role="group" >
                 <Button variant="primary" onClick={a}>Play</Button>
