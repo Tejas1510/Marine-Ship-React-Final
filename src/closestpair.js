@@ -9,7 +9,7 @@ function closestpair() {
     return (
         <div>
             <div className="closestpair">
-                <Canvas/>
+                
             </div>
         </div>
     )

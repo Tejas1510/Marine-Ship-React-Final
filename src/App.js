@@ -4,9 +4,10 @@ import './App.css';
 import { Route, Switch,Redirect } from 'react-router-dom';
 import Navbar from './Navbar';
 import HomePage from './homepage';
-import ClosestPair from './closestpair';
+import ClosestPair from './Canvas';
 import CollisionAvoider from './collisionavoider';
 import Contact from './contact';
+import Footer from './footer';
 function App() {
   return (
     <div>
@@ -14,10 +15,16 @@ function App() {
         <Route exact path ="/">
             <Navbar/>
             <HomePage/>
+            <br/>
+            <Footer/>
         </Route>
         <Route exact path="/closestpair">
           <Navbar/>
+          <br/>
+          <br/>
           <ClosestPair/>
+          <br/>
+            <Footer/>
         </Route>
         <Route exact path="/collisionavoider">
           <Navbar/>
@@ -25,7 +32,9 @@ function App() {
         </Route>
         <Route exact path="/contact">
           <Navbar/>
-          <Contact/>
+          <br/>
+          <br/>
+            <Footer/>
         </Route>
         <Redirect to="/" />
       </Switch>
