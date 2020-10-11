@@ -17,6 +17,7 @@ function App() {
         </Route>
         <Route exact path="/closestpair">
           <Navbar/>
+          {/* <CollisionAvoider/> */}
           <ClosestPair/>
         </Route>
         <Route exact path="/collisionavoider">
