@@ -12,6 +12,7 @@ import Ashutosh from './assets/img/ashutosh.png';
 import Om from './assets/img/om.jpg';
 import './assets/css/style.css';
 function homepage() {
+  
     return (
         <div>
             <section id="hero" className="clearfix mt-5">

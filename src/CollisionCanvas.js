@@ -1,7 +1,7 @@
 import React, { useState,useRef, useEffect, Component } from 'react';
 
 // Canvas
-var totalShips =0;
+const totalShips = 20;
 const midis=25;
 const ships=[];
 
@@ -44,7 +44,7 @@ class Ship {
 }
 
 function newAnimation(){
-    for(let i=0;i<5;i++){
+    for(let i=0;i<(totalShips/2);i++){
 
         ships.push(new Ship(Math.floor(Math.random() * 800),1,Math.floor(Math.random() * 500),Math.floor(Math.random() * 800)      ))// x=rand y=0   x=rand y=500
         ships.push(new Ship(1,Math.floor(Math.random() * 800), Math.floor(Math.random() * 500),Math.floor(Math.random() * 800)     ))//  x=0 y=rand  x=500 y=rand  
@@ -52,7 +52,6 @@ function newAnimation(){
         ships.push(new Ship(799,Math.floor(Math.random() * 800), 1,Math.floor(Math.random() * 500),Math.floor(Math.random() * 800) ));// x=500  y=rand x=0 y=rand
     
     }
-    totalShips=ships.length;
 }
 
 function backtooriginal(){
@@ -100,6 +99,7 @@ function animate(ctx) {
         ctx.arc(ships[i].xPosition, ships[i].yPosition, 5, 0 * Math.PI, 2 * Math.PI);
         ctx.fill();
     }
+
     running(ships)
 
     for (let i in ships) {
@@ -136,9 +136,6 @@ const CollisionCanvas = props => {
         setInterval(() => {
             animate(context);
         }, 30);
-        setInterval(() => {
-            newAnimation();
-        }, 8000);
 
     });
 
