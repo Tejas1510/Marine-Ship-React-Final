@@ -1,9 +1,14 @@
 import React, { useState,useRef, useEffect, Component } from 'react';
+import Nav from './assets/img/boat.png'
+import ocean from './assets/img/ocean.png'
+import port from './assets/img/island.png'
 
 // Canvas
 const totalShips = 20;
 const midis=25;
 const ships=[];
+const width_final=1000;
+const height_final=800;
 
 // Ship class
 class Ship {
@@ -43,13 +48,20 @@ class Ship {
 
 }
 
+var imageObj2 = new Image();
+imageObj2.src = ocean
+var imageObj1 = new Image();
+imageObj1.src = Nav
+var imageObj3 = new Image();
+imageObj3.src = port
+
 function newAnimation(){
     for(let i=0;i<(totalShips/2);i++){
 
-        ships.push(new Ship(Math.floor(Math.random() * 800),1,Math.floor(Math.random() * 500),Math.floor(Math.random() * 800)      ))// x=rand y=0   x=rand y=500
-        ships.push(new Ship(1,Math.floor(Math.random() * 800), Math.floor(Math.random() * 500),Math.floor(Math.random() * 800)     ))//  x=0 y=rand  x=500 y=rand  
-        ships.push(new Ship(Math.floor(Math.random() * 800),800,Math.floor(Math.random() * 500),Math.floor(Math.random() * 800)    ));// x=rand y=500 x= rand y=0
-        ships.push(new Ship(799,Math.floor(Math.random() * 800), 1,Math.floor(Math.random() * 500),Math.floor(Math.random() * 800) ));// x=500  y=rand x=0 y=rand
+        ships.push(new Ship(Math.floor(Math.random() * 1000),1,Math.floor(Math.random() * 1000),Math.floor(Math.random() * 800)      ))// x=rand y=0   x=rand y=500
+        ships.push(new Ship(1,Math.floor(Math.random() * 800), Math.floor(Math.random() * 1000),Math.floor(Math.random() * 800)     ))//  x=0 y=rand  x=500 y=rand  
+        ships.push(new Ship(Math.floor(Math.random() * 1000),800,Math.floor(Math.random() * 1000),Math.floor(Math.random() * 800)    ));// x=rand y=500 x= rand y=0
+        ships.push(new Ship(1000,Math.floor(Math.random() * 800),Math.floor(Math.random() * 1000),Math.floor(Math.random() * 800) ));// x=500  y=rand x=0 y=rand
     
     }
 }
@@ -89,14 +101,12 @@ function running(ships){
 
 function animate(ctx) {
 
-    ctx.fillStyle = '#42a7f5';
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    
-    ctx.fillStyle = 'red';
-    
+    ctx.drawImage(imageObj2,0,0,width_final,height_final);
+        
+    ctx.fillStyle = 'green';
     for (let i = 0; i < totalShips; i++) {
         ctx.beginPath();
-        ctx.arc(ships[i].xPosition, ships[i].yPosition, 5, 0 * Math.PI, 2 * Math.PI);
+        ctx.drawImage(imageObj1,ships[i].xPosition-15, ships[i].yPosition-15,30,30);
         ctx.fill();
     }
 
@@ -107,7 +117,7 @@ function animate(ctx) {
         ships[i].xPosition += ships[i].incrementX;
         ships[i].yPosition += ships[i].incrementY;
 
-        if (ships[i].xPosition >1000 || ships[i].yPosition > 1000 ||
+        if (ships[i].xPosition >1200 || ships[i].yPosition > 1200 ||
             ships[i].xPosition <-200 || ships[i].yPosition < -200)
         {
             
@@ -128,7 +138,7 @@ const CollisionCanvas = props => {
         
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-        context.canvas.width=800;
+        context.canvas.width=1000;
         context.canvas.height=800;
         ctx.current=context;
 

@@ -29,6 +29,8 @@ function App() {
         <Route exact path="/collisionavoider">
           <Navbar/>
           <CollisionAvoider/>
+          <br/>
+            <Footer/>
         </Route>
         <Route exact path="/contact">
           <Navbar/>

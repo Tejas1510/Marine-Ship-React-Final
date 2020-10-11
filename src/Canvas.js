@@ -5,6 +5,7 @@ import {
 import Nav from './assets/img/boat.png'
 import ocean from './assets/img/ocean.png'
 import port from './assets/img/island.png'
+
 // Canvas
 var totalShips = 20;
 const space = 10;
@@ -58,42 +59,19 @@ imageObj3.src = port
 
 // Animation function
 function animate(ctx) {
-    console.log("teatsing")
-    
-    // var numberOfShips = ships.length;
-    // var temp007=[]
-    // temp007=valid(ships)
-    // closest1(temp007)
 
-    // ctx.fillStyle = '#42a7f5';
-    // ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.drawImage(imageObj2,0,0,width_final,height_final);
-    
-    
-    // const ctx = this.refs.canvas.getContext('2d');
-    
-   
+    ctx.drawImage(imageObj2,0,0,width_final,height_final);    
     
     ctx.fillStyle = 'green';
     for (let i = 0; i < totalShips; i++) {
         ctx.beginPath();
         ctx.drawImage(imageObj1,ships[i].xPosition-15, ships[i].yPosition-15,30,30);
         ctx.fill();
-    }
-
-    // ctx.fillStyle = 'black';
-   
+    }   
 
     ctx.drawImage(imageObj3,destination[0][0]-50, destination[0][1]-80, 200, 200);
     ctx.drawImage(imageObj3,destination[1][0]-50, destination[1][1]-50, 200, 200);
 
-    // for (let i = 0; i < totalShips; i++) {
-
-    //     ships[i].xPosition += ships[i].incrementX;
-    //     ships[i].yPosition += ships[i].incrementY;
-    //     }
-    // }
- 
     for(let i=0;i<totalShips;i++) {
 
         if (ships[i].incrementX>0) {
@@ -227,7 +205,6 @@ var closestShips = [];
 
 //Distance calculator
 function distance(ship1,ship2){
-    // console.log(ship1,ship2)
     if (ship1!==undefined && ship2!==undefined){
     return Math.sqrt((ship1.xPosition - ship2.xPosition)**2 + (ship1.yPosition - ship2.yPosition)**2);
     }
@@ -236,33 +213,7 @@ function distance(ship1,ship2){
     }
 }
 
-//DAC
-
-/**
- * dac compares every point in the list with the other
- * ships to find the shortest distance between the ships
- *
- * PRE:  There are at least two ships in the array
- *
- * @param {array} ships:  2d array of ships [[x,y], [x,y]]
- *
- * @returns {object} An object containing the ships and their distance
- */
 function closest1(ships) {
-    // ships=mergex(ships)
-
-    /**
-     * function dacHelper is the recursive function that applies the divide
-     * and conquer algorithm
-     *
-     * PRE: the array is SORTED BY X-COORDINATE
-     *
-     * @param {array} p: the array of ships
-     * @param i: index of the first item in the array to find closest pair
-     * @param j: index of the first item in the array to NOT find closet pair
-     *
-     * @returns {object} An object containing the ships and their distance
-     */
 
     function dacHelper(i, j) {
 
@@ -438,27 +389,6 @@ function calculateClosestPair(ctx,ships) {
     temp007=valid(ships)
     closest1(temp007)
 
-    // ctx.beginPath();
-    // ctx.arc(closestShips[0].xPosition, closestShips[0].yPosition,15,0, 2*Math.PI);
-    // ctx.arc(closestShips[1].xPosition, closestShips[1].yPosition,15,0, 2*Math.PI);
-    // ctx.lineWidth=1;
-    // ctx.strokeStyle="blue";
-    // ctx.stroke();
-
-//     var glowColor="#FF1493";
-
-//     ctx.save();
-//     ctx.strokeStyle = glowColor;
-//     ctx.shadowColor = glowColor;
-//     ctx.shadowOffsetX=300;
-// for (var i = 0; i < 5; i++) {
-//     ctx.shadowBlur = i * 2;
-    
-// }
-// ctx.strokeRect(closestShips[0].xPosition-10, closestShips[0].yPosition-10, 22, 22);
-//     ctx.strokeRect(closestShips[1].xPosition-10, closestShips[1].yPosition-10, 22, 22);
-// ctx.restore();  
-
     ctx.beginPath();
     ctx.lineWidth = 2; 
     ctx.strokeStyle = "red"; 
@@ -519,11 +449,6 @@ const Canvas = props => {
         const context = canvas.getContext('2d')
         context.canvas.width=1000
         context.canvas.height=600;
-        // var imageObj2 = new Image();
-        // imageObj2.src = ocean
-        // // ctx.fillStyle = '#42a7f5';
-        // // ctx.fillRect(imageObj2,0, 0, ctx.canvas.width, ctx.canvas.height);
-        // context.drawImage(imageObj2,0,0,800,800);
         ctx.current=context;
 
         newAnimation(context);
