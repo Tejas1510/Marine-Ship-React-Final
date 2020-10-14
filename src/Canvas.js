@@ -5,6 +5,7 @@ import {
 import Nav from './assets/img/boat.png'
 import ocean from './assets/img/ocean.png'
 import port from './assets/img/island.png'
+import Showdistance from './Distance';
 
 // Canvas
 var totalShips = 20;
@@ -15,10 +16,13 @@ var startAnimation;
 var isAnimationOn = false;
 const width_final=1000;
 const height_final=600;
+var dist=0,s1x,s2x,s1y,s2y,sid=1,cls1sid,cls2sid;
+
 const destination = [[width_final-40,20],[width_final-40,height_final-60]]
 // Ship class
 class Ship {
     constructor(xPosition, yPosition) {
+        this.sid = sid;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.speed = Math.random() *2+ 0.5;
@@ -39,6 +43,7 @@ class Ship {
         this.incrementY = Math.sin(Angle) * Per_Frame_Distance;
         this.xoriginal = Math.cos(Angle) * Per_Frame_Distance;
         this.yoriginal =Math.sin(Angle) * Per_Frame_Distance;
+        sid+=1;
     }
 }
 
@@ -396,6 +401,13 @@ function calculateClosestPair(ctx,ships) {
     ctx.lineTo(closestShips[1].xPosition, closestShips[1].yPosition);
     
     ctx.stroke();   
+    dist= distance(closestShips[0],closestShips[1]);
+    s1x = closestShips[0].xPosition;
+    s1y = closestShips[0].yPosition;
+    s2x = closestShips[1].xPosition;
+    s2y = closestShips[1].yPosition;
+    cls1sid = closestShips[0].sid;
+    cls2sid = closestShips[1].sid;
 }
 
 // Closest Pair (Calculate)
@@ -430,8 +442,6 @@ function clearHighlights(ctx){
 }
 
 
-
-
 const Canvas = props => {
 
     const ctx=useRef(null)
@@ -441,7 +451,8 @@ const Canvas = props => {
     const [y1, sety1] = useState(0);
     const [x2, setx2] = useState(0);
     const [y2, sety2] = useState(0);
-
+    const [show, setShow] = useState(false);
+    // const [dist, setDist] = useState(0);
 
     useEffect(() => {
         
@@ -459,29 +470,40 @@ const Canvas = props => {
 
     function a(){
         playAnimation(ctx.current);
+        setShow(false);
+
     }
 
     function b(){
         pauseAnimation(ctx.current);
+        setShow(false);
+
     }
 
     function c(){
         pauseAnimation();
         newAnimation(ctx.current);
         animate(ctx.current);
+        setShow(false);
+
     }
 
     function d(){
         closestPair(ctx.current);
+        setShow(true);
     }
 
     function e(){
         pauseAnimation(ctx.current);
         toggle();
+        setShow(false);
+
     }
 
     function f(){
         clearHighlights(ctx.current);
+        setShow(false);
+
     }
 
     function toggle(){
@@ -491,6 +513,7 @@ const Canvas = props => {
     function submit(){
         setOn(!on);
         selectedClosestPair(ctx.current,x1,x2,y1,y2);
+        setShow(true);
     }
 
     function x1Change(e){
@@ -508,6 +531,7 @@ const Canvas = props => {
     function y2Change(e){
         sety2(e.target.value);
     }
+
     return (
         <div class="container">
             <br/>
@@ -524,6 +548,7 @@ const Canvas = props => {
                 <Button variant="primary" onClick={e}>Select</Button>
                 <Button variant="primary" onClick={f}>Clear</Button>
             </div>
+
 
             <Modal isOpen={on} toggle={toggle}>
                 <ModalHeader>Enter Coordinates</ModalHeader>
@@ -554,6 +579,8 @@ const Canvas = props => {
                 </ModalBody>
             </Modal>
 
+            <Showdistance shows={show} distance={dist} s1x={s1x}
+            s1y={s1y} s2x={s2x} s2y={s2y} cls1={cls1sid} cls2={cls2sid}/>
         </div>
     )
 }
