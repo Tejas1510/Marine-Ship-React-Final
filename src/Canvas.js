@@ -4,7 +4,7 @@ import {
     Form, FormGroup, Input, Button, Label } from 'reactstrap';
 import Nav from './assets/img/boat.png'
 import ocean from './assets/img/ocean.png'
-import port from './assets/img/island.png'
+import port from './assets/img/port005.png'
 import Showdistance from './Distance';
 
 // Canvas
@@ -18,7 +18,7 @@ const width_final=1000;
 const height_final=600;
 var dist=0,s1x,s2x,s1y,s2y,sid=1,cls1sid,cls2sid;
 
-const destination = [[width_final-40,20],[width_final-40,height_final-60]]
+const destination = [[width_final-160,60],[width_final-160,height_final-60]]
 // Ship class
 class Ship {
     constructor(xPosition, yPosition) {
@@ -27,8 +27,15 @@ class Ship {
         this.yPosition = yPosition;
         this.speed = Math.random() *2+ 0.5;
         let ind = Math.random() < 0.5 ? 0 : 1;
-        this.destinationX = destination[ind][0];
-        this.destinationY = destination[ind][1];
+        if (ind==0){
+            this.destinationX = destination[ind][0]+35;
+            this.destinationY = destination[ind][1]+30;
+        }
+        else{
+            this.destinationX = destination[ind][0]+35;
+            this.destinationY = destination[ind][1]+10;
+        }
+        
         this.slope = (this.destinationY - yPosition) / (this.destinationX - xPosition);
         this.incrementX = this.speed / Math.sqrt(1 + this.slope ** 2);
         this.incrementY = (this.slope*this.speed) / Math.sqrt(1 + this.slope ** 2);
@@ -74,8 +81,8 @@ function animate(ctx) {
         ctx.fill();
     }   
 
-    ctx.drawImage(imageObj3,destination[0][0]-50, destination[0][1]-80, 200, 200);
-    ctx.drawImage(imageObj3,destination[1][0]-50, destination[1][1]-50, 200, 200);
+    ctx.drawImage(imageObj3,destination[0][0]-10, destination[0][1]-80, 200, 200);
+    ctx.drawImage(imageObj3,destination[1][0]-10, destination[1][1]-100, 200, 200);
 
     for(let i=0;i<totalShips;i++) {
 
@@ -372,7 +379,9 @@ function closest1(ships) {
 function valid(abc){
     var temp007=[]
     for(let i=0;i<abc.length;i++) {
-            if (abc[i].xPosition < abc[i].destinationX){
+            // if ( !((abc[i].xPosition > abc[i].destinationX-10 && abc[i].yPosition < abc[i].destinationY+70)||
+            //      (abc[i].xPosition > abc[i].destinationX-70 && abc[i].yPosition > abc[i].destinationY-70))){
+            if(abc[i].xPosition < abc[i].destinationX-10){
                 temp007.push(abc[i])
             }
             
@@ -390,8 +399,11 @@ function calculateClosestPair(ctx,ships) {
     var minDistance = Number.MAX_VALUE;
     
     var numberOfShips = ships.length;
+    
+
     var temp007=[]
     temp007=valid(ships)
+    if (temp007.length>=2){
     closest1(temp007)
 
     ctx.beginPath();
@@ -408,8 +420,8 @@ function calculateClosestPair(ctx,ships) {
     s2y = closestShips[1].yPosition;
     cls1sid = closestShips[0].sid;
     cls2sid = closestShips[1].sid;
+    }
 }
-
 // Closest Pair (Calculate)
 function closestPair(ctx){
     calculateClosestPair(ctx,ships);
