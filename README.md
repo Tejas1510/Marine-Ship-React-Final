@@ -23,7 +23,30 @@ The Project offer two main services which are closest pair finder and collision 
 2. Collision Avoider System which can be implemented in cars and ship deployed with sensors.
 3. Responsive Design to wor on all types of devices
 
+## Usage
+
+1. Clone the Repository
+```
+git clone https://github.com/Tejas1510/Marine-Ship-React-Final.git
+```
+
+2. Install all React Dependency using npm install
+```
+npm install
+```
+
+3. Start the React App
+```
+npm start
+```
+
+4. You can watch our youtube video for more details for usage Part.
+
+[Live Demo Video](https://www.youtube.com/watch?v=aKrQRAcRy4w&t=7s)
+
 ## Tech Stacks Used
+
+
 
 
 
