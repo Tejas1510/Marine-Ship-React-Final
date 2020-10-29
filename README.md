@@ -9,6 +9,7 @@
 <img src="https://img.shields.io/badge/language-BootStrap-blue?style=for-the-badge">  
  </p>
 
+## [Live Demo Video](https://www.youtube.com/watch?v=aKrQRAcRy4w&t=7s)
 
 # Marine Ship Implementation using Closet Pair
 
@@ -41,8 +42,9 @@ npm start
 ```
 
 4. You can watch our youtube video for more details for usage Part.
-
+```
 [Live Demo Video](https://www.youtube.com/watch?v=aKrQRAcRy4w&t=7s)
+```
 
 ## Tech Stacks Used
 
