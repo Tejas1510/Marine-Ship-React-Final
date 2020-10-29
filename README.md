@@ -46,6 +46,64 @@ npm start
 
 ## Tech Stacks Used
 
+1. React JS
+2. Javascript
+3. Bootstrap
+4. HTML
+5. CSS
+
+## Demo
+
+### Front Page
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image1.png)
+
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image2.png)
+
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image3.png)
+
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image4.png)
+
+### Closet Pair Page
+
+
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image5.png)
+
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image6.png)
+
+### Select button selects particular area defined by the user
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image7.png)
+
+
+![endpoint](https://github.com/Tejas1510/Marine-Ship-React-Final/blob/master/images/image8.png)
+
+
+
+## Contributors
+
+[Tejas Sudhir Tapas](https://github.com/Tejas1510) Lead Developer
+
+[Om Patre](https://github.com/ompatre) Lead Developer
+
+[Ashutosh Gupta](https://github.com/Ashutosh0212) Lead Developer
+
+
+<p align="center">
+<a href="https://github.com/Tejas1510"><img src="http://ForTheBadge.com/images/badges/built-by-developers.svg" alt="built by developers"></a>
+<a href="https://github.com/Tejas1510"><img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built with love"></a>
+</p>
+
+
+
+
+
+
 
 
 
